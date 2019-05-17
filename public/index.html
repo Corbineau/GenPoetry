@@ -10,7 +10,8 @@
     <link rel="stylesheet" href="resources/css/style.css">
 
     <!--added a link to google fonts-->
-    <link href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre:400,400i,700,700i|Homemade+Apple" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre:400,400i,700,700i|Homemade+Apple"
+        rel="stylesheet">
 </head>
 
 <body class="column">
@@ -24,17 +25,25 @@
             <h2>
                 Add new random lines
             </h2>
-            <input type="text" id="lineAdd"> -- Add a line</input> 
+            <input type="text" id="lineAdd"> -- Add a line</input>
             <button id="lineBtn">Save line</button>
         </div>
         <div class="box column center" id="poemGen">
             <div>
-                <h2>Generate your poem</h2> 
-                <input type="number" id="lineNumber"> -- how many lines do you want?</input> 
+                <h2>Generate your poem</h2>
+                <input type="number" id="lineNumber"> -- how many lines do you want?</input>
                 <button id="genPoem">Generate Poem</button>
             </div>
-            <div id="poem" class="text">
+            <div id="poem">
+                <p id="poemDiv" class="text">
 
+                </p>
+                <form id="save-poem">
+                    <input type="text" id="name" label="name"></input>
+                    <input type="text" id="creator" label="creator"></input>
+                    <button id="save-poem">Save Poem</button>
+                </form>
+                <p id="save-message">Poem Saved!</p>
             </div>
         </div>
     </div>
@@ -42,9 +51,9 @@
     <footer>
 
     </footer>
-     <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
-  <script src="https://www.gstatic.com/firebasejs/5.10.0/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/5.10.0/firebase-firestore.js"></script>
+    <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/5.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.10.0/firebase-firestore.js"></script>
 
 </body>
 

@@ -1,6 +1,7 @@
 //Dependencies
 // =============================================================
 require("dotenv").config();
+var poems = require("../../poems");
 var config = require('./config/config');
 var fs = require("fs");
 var express = require("express");
@@ -14,6 +15,42 @@ var PORT = config.port;
 // Sets up the Express app to handle data parsing
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
+
+//set global variables
+
+const poemText = $("#poemText");
+const poemDiv = $("#poem");
+let thisPoem;
+
+
+// Routes
+// =============================================================
+
+// Basic route that sends the user first to the AJAX Page
+app.get("/", function(req, res) {
+    res.sendFile(path.join(__dirname, "../../index.html"));
+  });
+  
+  // Displays all poems
+  app.get("/api/poems", function(req, res) {
+    return res.json(poems);
+  });
+  
+  // Displays a single poem, or returns false
+  app.get("/api/poems/:poem", function(req, res) {
+    var chosen = req.params.poem;
+  
+    console.log(chosen);
+  
+    for (var i = 0; i < poems.length; i++) {
+      if (chosen === poems[i].name) {
+        return res.json(poems[i]);
+      }
+    }
+  
+    return res.json(false);
+  });
 
 
 //the poem object
@@ -73,38 +110,55 @@ $("#lineBtn").on("click", (event) => {
     storeLine();
 })
 
-//set changable html element
-
-let poemDiv = $("#poem");
 
 // Generate the poem
 
 const showPoem = () => {
-    let thisPoem = new Poem($("#lineNumber").val().trim());
+    thisPoem = new Poem($("#lineNumber").val().trim());
     thisPoem.genPoem();
-    poemDiv.text(thisPoem.myLines.join(" "));
+    poemText.text(thisPoem.myLines.join(" "));
     $("#lineNumber").val("");
+    poemDiv.show();
 }
 
-
-
-// const savePoem = (poemName) => {
-// db.collection("poems").doc(`${poemName}`).set({
-//     name: poemName,
-//     lines: myLines,
-//     author: author
-// })
-// .then(function() {
-//     console.log("Document successfully written!");
-// })
-// .catch(function(error) {
-//     console.error("Error writing document: ", error);
-// });
-
-// }
+// Create New poems - takes in JSON input
+app.post("/api/poems", function(req, res) {
+    // req.body hosts is equal to the JSON post sent from the user
+    // This works because of our body parsing middleware
+    var newpoem = req.body;
+  
+    console.log(newpoem);
+  
+    // We then add the json the user sent to the poem array
+    poems.push(newpoem);
+  
+    // We then display the JSON to the users
+    res.json(newpoem);
+  });
+  
+  // Starts the server to begin listening
+  // =============================================================
+  app.listen(PORT, function() {
+    console.log("App listening on PORT " + PORT);
+  });
+  
 
 $("#genPoem").on("click", (event) => {
     event.preventDefault();
     showPoem();
 })
 
+$("#save-poem").on("click", function() {
+    event.preventDefault();
+
+    thisPoem.saveName($("#name").val().trim());
+    thisPoem.saveAuthor($("#creator").val().trim());
+
+      $.post("/api/poems", newpoem)
+        .then(function(data) {
+          console.log(data);
+          poemDiv.hide();
+          
+        });
+
+    });
