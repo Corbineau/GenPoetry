@@ -1,9 +1,19 @@
+//Dependencies
+// =============================================================
 require("dotenv").config();
+var config = require('./config/config');
 var fs = require("fs");
 var express = require("express");
 var path = require("path");
 
+//Sets up the Express App
+// =============================================================
+var app = express();
+var PORT = config.port;
 
+// Sets up the Express app to handle data parsing
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
 
 //the poem object
@@ -26,7 +36,7 @@ class Poem {
 
         //method to generate the poem itself
         this.genPoem = function() {
-            fs.readFile("lines.txt", "utf8", function (error, data) {
+            fs.readFile("../lines.txt", "utf8", function (error, data) {
 
                 if (error) {
                     return console.log(error);
@@ -50,7 +60,7 @@ storeLine = () => {
     let line = $("#lineAdd").val().trim();
     console.log(`The line: ${line}`);
     //save it in a text file! HOWSABOUT DAT!?
-    fs.appendFile("lines.txt", `${line},`, function (err) {
+    fs.appendFile("../lines.txt", `${line},`, function (err) {
         if (err) throw err;
 
     });
@@ -76,30 +86,25 @@ const showPoem = () => {
     $("#lineNumber").val("");
 }
 
-const 
 
-const savePoem = (poemName) => {
-db.collection("poems").doc(`${poemName}`).set({
-    name: poemName,
-    lines: myLines,
-    author: author
-})
-.then(function() {
-    console.log("Document successfully written!");
-})
-.catch(function(error) {
-    console.error("Error writing document: ", error);
-});
 
-}
+// const savePoem = (poemName) => {
+// db.collection("poems").doc(`${poemName}`).set({
+//     name: poemName,
+//     lines: myLines,
+//     author: author
+// })
+// .then(function() {
+//     console.log("Document successfully written!");
+// })
+// .catch(function(error) {
+//     console.error("Error writing document: ", error);
+// });
+
+// }
 
 $("#genPoem").on("click", (event) => {
     event.preventDefault();
-    genPoem();
+    showPoem();
 })
 
-let storedLines = localStorage.getItem(JSON.parse("lines"));
-    console.log(storedLines);
-if (storedLines) {
-    poemLines = JSON.parse(storedLines);
-};
