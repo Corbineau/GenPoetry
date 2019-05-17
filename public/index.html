@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Poetry Generator</title>
+
+    <!-- Added a link to our external stylesheet-->
+    <link rel="stylesheet" href="resources/css/reset.css">
+    <link rel="stylesheet" href="resources/css/style.css">
+
+    <!--added a link to google fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre:400,400i,700,700i|Homemade+Apple" rel="stylesheet">
+</head>
+
+<body class="column">
+    <header>
+
+        <h1>Random Poetry is Fun</h1>
+
+    </header>
+    <div class="wrapper column center">
+        <div class="box column center" id="lineGen">
+            <h2>
+                Add new random lines
+            </h2>
+            <input type="text" id="lineAdd"> -- Add a line</input> 
+            <button id="lineBtn">Save line</button>
+        </div>
+        <div class="box column center" id="poemGen">
+            <div>
+                <h2>Generate your poem</h2> 
+                <input type="number" id="lineNumber"> -- how many lines do you want?</input> 
+                <button id="genPoem">Generate Poem</button>
+            </div>
+            <div id="poem" class="text">
+
+            </div>
+        </div>
+    </div>
+
+    <footer>
+
+    </footer>
+     <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/5.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.10.0/firebase-firestore.js"></script>
+
+</body>
+
+</html>
