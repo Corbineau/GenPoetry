@@ -1,9 +1,10 @@
 //Dependencies
 // =============================================================
 require("dotenv").config();
-var poems = require("../../poems");
-var config = require('./config/config');
+var poems = require("./poems.js");
+var config = require("../../../config/config");
 var fs = require("fs");
+var $ = require("jquery");
 var express = require("express");
 var path = require("path");
 
