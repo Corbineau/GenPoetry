@@ -4,7 +4,8 @@ require("dotenv").config();
 var poems = require("./poems.js");
 var config = require("../../../config/config");
 var fs = require("fs");
-var $ = require("jquery");
+var jsdom = require('jsdom');
+$ = require('jquery')(new jsdom.JSDOM().window);
 var express = require("express");
 var path = require("path");
 
