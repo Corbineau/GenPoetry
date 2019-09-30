@@ -1,17 +1,15 @@
 //Dependencies
 // =============================================================
-const requirejs = require('requirejs');
+// const requirejs = require('requirejs');
 // require("dotenv").config();
 
 
 
-requirejs.config({
-  //Pass the top-level main.js/index.js require
-  //function to requirejs so that node modules
-  //are loaded relative to the top-level JS file.
+// requirejs.config({
+  
 
-  nodeRequire: require
-});
+//   nodeRequire: require
+// });
 
 // requirejs(['foo', 'bar'],
 // function   (foo,   bar) {
@@ -20,8 +18,8 @@ requirejs.config({
   //is used to load the module.
 // });
 
-const poems = requirejs("./poems.js");
-const config = requirejs("../../../config/config");
+const poems = require("./poems.js");
+const config = require("../../../config/config");
 const fs = require("fs");
 const jsdom = require('jsdom');
 $ = require('jquery')(new jsdom.JSDOM().window);
