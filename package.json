@@ -4,7 +4,8 @@
   "description": "poetry generator",
   "main": "js.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node js.js"
   },
   "bin": {
     "start": "js.js"
@@ -24,6 +25,7 @@
     "express": "^4.17.0",
     "jquery": "^3.4.1",
     "jsdom": "^15.1.0",
-    "path": "^0.12.7"
+    "path": "^0.12.7",
+    "requirejs": "^2.3.6"
   }
 }

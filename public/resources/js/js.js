@@ -1,18 +1,38 @@
 //Dependencies
 // =============================================================
-require("dotenv").config();
-var poems = require("./poems.js");
-var config = require("../../../config/config");
-var fs = require("fs");
-var jsdom = require('jsdom');
+const requirejs = require('requirejs');
+// require("dotenv").config();
+
+
+
+requirejs.config({
+  //Pass the top-level main.js/index.js require
+  //function to requirejs so that node modules
+  //are loaded relative to the top-level JS file.
+
+  nodeRequire: require
+});
+
+// requirejs(['foo', 'bar'],
+// function   (foo,   bar) {
+  //foo and bar are loaded according to requirejs
+  //config, but if not found, then node's require
+  //is used to load the module.
+// });
+
+const poems = requirejs("./poems.js");
+const config = requirejs("../../../config/config");
+const fs = require("fs");
+const jsdom = require('jsdom');
 $ = require('jquery')(new jsdom.JSDOM().window);
-var express = require("express");
-var path = require("path");
+const express = require("express");
+const path = require("path");
+
 
 //Sets up the Express App
 // =============================================================
-var app = express();
-var PORT = config.port;
+const app = express();
+const PORT = config.port;
 
 // Sets up the Express app to handle data parsing
 app.use(express.urlencoded({ extended: true }));
