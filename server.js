@@ -5,9 +5,9 @@
 // ==============================================================================
 
 var express = require("express");
-var config = require("./connection.js");
+var config = require("./config/config");
 var bodyParser = require("body-parser")
-var mongojs = require("mongojs");
+// var mongojs = require("mongojs");
 var routes = require("./routes");
 
 // ==============================================================================
@@ -34,7 +34,7 @@ app.use(bodyParser.json());
 
 
 // Use mongojs to hook the database to the db variable
-var db = mongojs(config.databade);
+// var db = mongojs(config.database);
 
 
 // ================================================================================
