@@ -18,8 +18,8 @@
   //is used to load the module.
 // });
 
-const poems = require("./poems.js");
-const config = require("../../../config/config");
+const poems = require("./public/resources/js/poems.js");
+const config = require("./config/config");
 const fs = require("fs");
 const jsdom = require('jsdom');
 $ = require('jquery')(new jsdom.JSDOM().window);
