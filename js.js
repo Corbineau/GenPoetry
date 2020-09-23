@@ -1,22 +1,3 @@
-//Dependencies
-// =============================================================
-// const requirejs = require('requirejs');
-// require("dotenv").config();
-
-
-
-// requirejs.config({
-  
-
-//   nodeRequire: require
-// });
-
-// requirejs(['foo', 'bar'],
-// function   (foo,   bar) {
-  //foo and bar are loaded according to requirejs
-  //config, but if not found, then node's require
-  //is used to load the module.
-// });
 
 const poems = require("./public/resources/js/poems.js");
 const config = require("./config/config");
